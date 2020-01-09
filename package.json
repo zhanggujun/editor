@@ -1,0 +1,77 @@
+{
+  "private": false,
+  "name": "@zhanggujun/editor",
+  "description": "基于svelte,marked,xss的简单markdown编辑器",
+  "main": "dist/editor.min.js",
+  "style": "dist/editor.min.css",
+  "version": "1.0.8",
+  "bugs": {
+    "url": "https://github.com/zhanggujun/editor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhanggujun/editor"
+  },
+  "keywords": [
+    "svelte",
+    "marked",
+    "xss",
+    "markdown",
+    "editor",
+    "@zhanggujun/editor"
+  ],
+  "author": "zhanggujun",
+  "license": "MIT",
+  "scripts": {
+    "clear:dev": "rm -rf public/dist",
+    "clear:build": "rm -rf build",
+    "build": "npm run clear:build && rollup -c && gulp",
+    "dev": "npm run clear:dev && rollup -c -w",
+    "publish": "npm publish --access=public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-external-helpers": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "autoprefixer": "^9.7.1",
+    "cnpm": "^6.1.1",
+    "cssnano": "^4.1.10",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-rename": "^2.0.0",
+    "install": "^0.13.0",
+    "jest": "^24.9.0",
+    "node-sass": "^4.13.0",
+    "rollup": "^1.12.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-css-only": "^1.0.0",
+    "rollup-plugin-filesize": "^6.2.1",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-nodent": "^0.2.2",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-uglify": "^6.0.3",
+    "svelte": "^3.16.7",
+    "svelte-preprocess": "^3.2.6"
+  },
+  "dependencies": {
+    "github-markdown-css": "^3.0.1",
+    "highlight.js": "^9.17.1",
+    "lodash": "^4.17.15",
+    "marked": "^0.8.0",
+    "shortcut-key": "^1.0.0",
+    "xss": "^1.0.6"
+  },
+  "files": [
+    "dist/*"
+  ]
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+	<title>Svelte</title>
+	<link rel='icon' type='image/png' href='./favicon.png'>
+	<link rel='stylesheet' href='./dist/reset.css?v=1'>
+	<link rel='stylesheet' href='./dist/editor.css?v=1'>
+<!--	<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>-->
+	<style>
+		#box,#box2,#box3{
+			width:900px;
+			margin:10px auto;
+		}
+	</style>
+</head>
+<input type="button" value="after" id="btn" />
+<input type="button" value="before" id="btn1" />
+<input type="button" value="watch xss" id="btn2" />
+<div id="box"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<script src='./dist/editor.js?v=1'></script>
+<script>
+	const marked = MdEditor.MdMarked
+	const mditor = new MdEditor.MdCreate('#box',{
+	  height:200
+	})
+	// setTimeout(() => {
+	// 	console.log('new placeholder')
+	// mditor.editor.placeholder = '这是发大哥'
+	console.log(mditor)
+	// },3000)
+	// const aa = new MdEditor.MdCreate('#box2')
+	//
+	// const ccc = {
+	// 	icon:'icon-code',
+	// 	name: 'code',
+	// 	title: '我是标题哦',
+	// 	key: 'h+b',
+	// 	handler(){
+	// 		alert()
+	// 	}
+	// }
+	//
+	// aa.toolbar.set(ccc)
+	// aa.toolbar.add(ccc)
+
+	// const bb = new MdEditor.MdCreate('#box3')
+	// bb.editor.height = 300
+	// bb.editor.placeholder = '最后的'
+	// setTimeout(() => {
+	// 	mditor.editor.placeholder = '该表了大法官'
+	// },3000)
+	// const item = mditor.toolbar.replace('bold',{ icon:'icon-code',title:'写几把血' })
+	// item.key = 'shift+alt+m'
+	// item.handler = () => mditor.insertBeforeText('哈哈')
+	// const getItem = mditor.toolbar.get('undo')
+	// getItem.icon = 'icon-code'
+	// getItem.title = '发大水'
+	// getItem.handler = () => {
+	// 	alert()
+	// }
+
+	// mditor.editor.toolbar = ['h1']
+
+	// setTimeout(() => {
+	// 	mditor.toolbar.set(getItem)
+	// },5000)
+	// setTimeout(() => {
+	// 	console.log(getItem)
+	// 	getItem.key = 'shift+alt+r'
+	// 	getItem.icon = 'icon-code'
+	// 	getItem.title = '哈哈'
+	// 	getItem.handler = () => {
+	// 		console.log(getItem)
+	// 	}
+	// },3000)
+	// mditor.toolbar.del('code')
+	// const addItem = mditor.toolbar.add({ icon:'icon-code',title:'标签' })
+	// addItem.key = 'h+b'
+	// addItem.handler = () => {
+	// 	alert('h+b')
+	// }
+
+	// mditor.editor.splitscreen = false
+	// mditor.editor.preview = true
+
+	const getEl = id => document.querySelector(`#${id}`)
+	getEl('btn').onclick = function(){
+		console.log(mditor)
+	  mditor.insertAfterText('hello word')
+	}
+	// console.log(mditor)
+	getEl('btn1').onclick = function(){
+		mditor.insertBeforeText('insertBeforeText')
+	}
+	// getEl('btn2').onclick = function(){
+	// 	mditor.editor.xss = false
+	// 	mditor.editor.height = 800
+	// 	mditor.editor.value = 'hello word'
+	// }
+	// mditor.editor.on('change',({detail}) => {
+	// 	console.log(detail)
+	// })
+	// axios.post('https://api.vvxiayutian.com/article/one',{article_id:'109c39be-150f-11ea-b43a-00163e1003d7'}).then(res => {
+	//   const { data } = res.data
+	//   const result = JSON.parse(data)
+	//   // mditor.editor.value = result.content
+	// 	// console.log(marked(result.content))
+	// 	mditor.setText(result.content)
+	// 	aa.setText('> 哈哈\n'+result.content)
+	//   // mditor.setText(result.content)
+	// }).catch(err => {
+	//   console.log(err)
+	// })
+</script>
+<body>
+</body>
+</html>

@@ -16,7 +16,6 @@
   import debounce from 'lodash/debounce'
   import { createEventDispatcher } from 'svelte'
   import { syncScroll } from '../../utils/editor'
-  import isElement from 'lodash/isElement'
 
   // vars
   let MdLockInput = false

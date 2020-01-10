@@ -30,8 +30,6 @@
   // import
   import { onMount,onDestroy,createEventDispatcher } from 'svelte'
   import keyboard from '../../utils/keyboard'
-  import { get } from 'svelte/store'
-  import { MdHeight,MdText,MdHtml,MdBox,MdFull,MdSplit,MdPreview,MdXssFilter,MdToolLeft,MdToolRight,MdUndoList } from '../../store'
   import MdTool from '../tool/index.svelte'
   import MdBody from '../body/index.svelte'
   import { insertBeforeText,insertAfterText,getSelection,setSelection,getSelectText,getTextEl } from '../../utils/range'
@@ -44,7 +42,6 @@
   import throttle from 'lodash/throttle'
   import uniqBy from 'lodash/uniqBy'
   import uniq from 'lodash/uniq'
-  import isPlainObject from 'lodash/isPlainObject'
   import cloneDeep from 'lodash/cloneDeep'
 
   // vars

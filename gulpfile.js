@@ -5,6 +5,16 @@ const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
 const del = require('del')
 const mini = require('gulp-clean-css')
+// const babel = require('gulp-babel')
+
+// gulp.task('default', () =>
+//   gulp.src('dist/editor.min.js')
+//     .pipe(babel({
+//       presets: ['@babel/preset-env'],
+//       plugins: ['@babel/transform-runtime']
+//     }))
+//     .pipe(gulp.dest('dist'))
+// )
 
 gulp.task('concat',() => {
   const fileList = [

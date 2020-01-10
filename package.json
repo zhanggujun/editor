@@ -4,7 +4,7 @@
   "description": "基于svelte,marked,xss的简单markdown编辑器",
   "main": "dist/editor.min.js",
   "style": "dist/editor.min.css",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "bugs": {
     "url": "https://github.com/zhanggujun/editor/issues"
   },
@@ -27,11 +27,12 @@
     "clear:build": "rm -rf build",
     "build": "npm run clear:build && rollup -c && gulp",
     "dev": "npm run clear:dev && rollup -c -w",
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access=public --registry=https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/plugin-external-helpers": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
     "@rollup/plugin-node-resolve": "^6.0.0",
     "autoprefixer": "^9.7.1",
@@ -40,6 +41,7 @@
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
@@ -72,6 +74,7 @@
     "xss": "^1.0.6"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "README.md"
   ]
 }

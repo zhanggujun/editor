@@ -42,13 +42,13 @@ const imageParse = (src, title, alt) => {
     return ''
   const { lazy = false } = renderer
   const _src = lazy ? 'https://static.vvxiayutian.com/static/placeholder.jpg' : src
-  let srcStr = `<div class="marked-image"><img src="${_src}"`
-  srcStr += `class="marked-src" title="${title || alt || ''}"`
-  srcStr += `data-echo="${src}" class="img-pop" />`
+  let string = `<div class="marked-image"><img src="${_src}"`
+  string += `class="marked-src" title="${title || alt || ''}"`
+  string += `data-echo="${src}" class="img-pop" />`
   if(title || alt)
-    srcStr += `<div class="marked-caption"><div class="marked-caption-text">${title || alt}</div></div>`
-  srcStr += '</div>'
-  return srcStr
+    string += `<div class="marked-caption"><div class="marked-caption-text">${title || alt}</div></div>`
+  string += '</div>'
+  return string
 }
 
 // 外链
@@ -56,11 +56,10 @@ const linkParse = (href, title, text) => {
   if(!href)
     return '';
   const target = href.substr(0, 1) === '#' ? '_self' : '_blank'
-  const cName = href.substr(0, 1) === '#' ? '' : 'c-link'
-  const hrefText = href.substr(0, 1) === '#'?text:text.length>40?`${text.slice(0.40)}...`:text
-  let hrefStr = `<a href="${href}" target="${target}" class="${cName}">${hrefText}</a>`
-  hrefStr = hrefStr.replace(/\s+/g, ' ').replace('\n', '')
-  return hrefStr;
+  const cName = href.substr(0, 1) === '#' ? '' : 'marked-link'
+  let string = `<a href="${href}" target="${target}" class="${cName}">${text}</a>`
+  string = string.replace(/\s+/g, ' ').replace('\n', '')
+  return string
 }
 
 const headingParse = (text,level,raw) => {

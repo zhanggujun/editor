@@ -1,6 +1,4 @@
 import debounce from 'lodash/debounce'
-import { get } from 'svelte/store'
-import { MdBox,MdToolRight } from '../store'
 import jq from './dom'
 
 let innerBool = false

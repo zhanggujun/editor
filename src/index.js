@@ -8,44 +8,42 @@ import './icon/iconfont.css'
 import 'highlight.js/styles/github.css'
 import 'github-markdown-css/github-markdown.css'
 
+import pkg from '../package.json'
+
 import jq from './utils/dom'
-
-import { get } from 'svelte/store'
-
-import { MdToolLeft,MdToolRight,MdBox,MdText,MdHtml } from './store'
 
 import { insertAfterText,insertBeforeText } from './utils/range'
 import marked from './utils/marked'
 
 import isElement from 'lodash/isElement'
 import isPlainObject from 'lodash/isPlainObject'
-import isInteger from 'lodash/isInteger'
-import cloneDeep from 'lodash/cloneDeep'
 
 class ToolBar{
   constructor(editor){
     this.editor = editor
-    this.toollist = cloneDeep(this.editor.toollist)
   }
   has(name){
     if(!name)
-      throw new Error('argument must be a string')
+      return false
     const item = this.get(name)
     return item ? true : false
   }
   _add(item){
-    const { toollist } = this
+    const { toollist } = this.editor
     const tools = [...toollist,item]
     return tools
   }
   add(item){
     if(!isPlainObject(item) || !item.icon || !item.name)
-      throw new Error(`add data must be an object and contain the icon, name attribute`)
+      return false
+    const has = this.has(item.name)
+    if(has)
+      return false
     const tools = this._add(item)
     this.editor.toollist = tools
   }
   _del(name){
-    const { toollist } = this
+    const { toollist } = this.editor
     const findIndex = toollist.findIndex(item => item.name == name)
     if(findIndex != -1){
       toollist.splice(findIndex,1)
@@ -54,30 +52,33 @@ class ToolBar{
   }
   del(name){
     if(!name)
-      throw new Error('argument must be a string')
+      return false
+    const has = this.has(name)
+    if(!has)
+      return false
     const tools = this._del(name)
     this.editor.toollist = tools
   }
   _replace(name,item){
-    const { toollist } = this
+    const { toollist } = this.editor
     const findIndex = toollist.findIndex(val => val.name == name)
     if(findIndex == -1)
-      return null
+      return false
     toollist.splice(findIndex,1,item)
     return toollist
   }
   replace(name,item){
     if(!isPlainObject(item) || !item.icon || !item.name)
-      throw new Error(`replace data must be an object and contain the icon, name attribute`)
+      return false
     if(!name)
-      throw new Error(`argument 'name' must be a string`)
+      return false
     const tools = this._replace(name,item)
     this.editor.toollist = tools
   }
   set(item){
     if(!isPlainObject(item) || !item.icon || !item.name)
-      throw new Error(`replace data must be an object and contain the icon, name attribute`)
-    let { toollist } = this
+      return false
+    let { toollist } = this.editor
     const findIndex = toollist.findIndex(val => val.name == item.name)
     if(findIndex == -1){
       toollist = this._add(item)
@@ -88,8 +89,8 @@ class ToolBar{
   }
   get(name){
     if(!name)
-      throw new Error('argument must be a string')
-    const { toollist } = this
+      return false
+    const { toollist } = this.editor
     return toollist.find(val => val.name == name)
   }
 }
@@ -152,6 +153,7 @@ class Editor{
     this.editor.on = this.editor.$on
     this.editor.destroy = this.editor.$destroy
     this.toolbar = new ToolBar(this.editor)
+    this.version = pkg.version
   }
   insertAfterText(text){
     insertAfterText(this.editor.EditorBox,text,value => {

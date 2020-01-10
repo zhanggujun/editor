@@ -7920,22 +7920,21 @@
 
     var _src = lazy ? 'https://static.vvxiayutian.com/static/placeholder.jpg' : src;
 
-    var srcStr = "<div class=\"marked-image\"><img src=\"".concat(_src, "\"");
-    srcStr += "class=\"marked-src\" title=\"".concat(title || alt || '', "\"");
-    srcStr += "data-echo=\"".concat(src, "\" class=\"img-pop\" />");
-    if (title || alt) srcStr += "<div class=\"marked-caption\"><div class=\"marked-caption-text\">".concat(title || alt, "</div></div>");
-    srcStr += '</div>';
-    return srcStr;
+    var string = "<div class=\"marked-image\"><img src=\"".concat(_src, "\"");
+    string += "class=\"marked-src\" title=\"".concat(title || alt || '', "\"");
+    string += "data-echo=\"".concat(src, "\" class=\"img-pop\" />");
+    if (title || alt) string += "<div class=\"marked-caption\"><div class=\"marked-caption-text\">".concat(title || alt, "</div></div>");
+    string += '</div>';
+    return string;
   };
 
   var linkParse = function linkParse(href, title, text) {
     if (!href) return '';
     var target = href.substr(0, 1) === '#' ? '_self' : '_blank';
-    var cName = href.substr(0, 1) === '#' ? '' : 'c-link';
-    var hrefText = href.substr(0, 1) === '#' ? text : text.length > 40 ? "".concat(text.slice(0.40), "...") : text;
-    var hrefStr = "<a href=\"".concat(href, "\" target=\"").concat(target, "\" class=\"").concat(cName, "\">").concat(hrefText, "</a>");
-    hrefStr = hrefStr.replace(/\s+/g, ' ').replace('\n', '');
-    return hrefStr;
+    var cName = href.substr(0, 1) === '#' ? '' : 'marked-link';
+    var string = "<a href=\"".concat(href, "\" target=\"").concat(target, "\" class=\"").concat(cName, "\">").concat(text, "</a>");
+    string = string.replace(/\s+/g, ' ').replace('\n', '');
+    return string;
   };
 
   var headingParse = function headingParse(text, level, raw) {
@@ -11639,6 +11638,94 @@
     return Editor;
   }(SvelteComponentDev);
 
+  var name = "@zhanggujun/editor";
+  var description = "基于svelte,marked,xss的简单markdown编辑器";
+  var main = "dist/editor.min.js";
+  var style = "dist/editor.min.css";
+  var version = "1.0.9";
+  var bugs = {
+      url: "https://github.com/zhanggujun/editor/issues"
+  };
+  var repository = {
+      type: "git",
+      url: "https://github.com/zhanggujun/editor"
+  };
+  var keywords = ["svelte","marked","xss","markdown","editor","@zhanggujun/editor"];
+  var author = "zhanggujun";
+  var license = "MIT";
+  var scripts = {
+      "clear:dev": "rm -rf public/dist",
+      "clear:build": "rm -rf build",
+      build: "npm run clear:build && rollup -c && gulp",
+      dev: "npm run clear:dev && rollup -c -w",
+      publish: "npm publish --access=public"
+  };
+  var devDependencies = {
+      "@babel/core": "^7.7.7",
+      "@babel/plugin-external-helpers": "^7.7.4",
+      "@babel/plugin-transform-runtime": "^7.7.6",
+      "@babel/preset-env": "^7.7.7",
+      "@rollup/plugin-node-resolve": "^6.0.0",
+      autoprefixer: "^9.7.1",
+      cnpm: "^6.1.1",
+      cssnano: "^4.1.10",
+      del: "^5.1.0",
+      gulp: "^4.0.2",
+      "gulp-autoprefixer": "^7.0.1",
+      "gulp-babel": "^8.0.0",
+      "gulp-clean-css": "^4.2.0",
+      "gulp-concat": "^2.6.1",
+      "gulp-cssnano": "^2.1.3",
+      "gulp-rename": "^2.0.0",
+      install: "^0.13.0",
+      jest: "^24.9.0",
+      "node-sass": "^4.13.0",
+      rollup: "^1.12.0",
+      "rollup-plugin-babel": "^4.3.3",
+      "rollup-plugin-commonjs": "^10.0.0",
+      "rollup-plugin-copy": "^3.1.0",
+      "rollup-plugin-css-only": "^1.0.0",
+      "rollup-plugin-filesize": "^6.2.1",
+      "rollup-plugin-json": "^4.0.0",
+      "rollup-plugin-livereload": "^1.0.0",
+      "rollup-plugin-nodent": "^0.2.2",
+      "rollup-plugin-serve": "^1.0.1",
+      "rollup-plugin-svelte": "^5.0.3",
+      "rollup-plugin-terser": "^5.1.2",
+      "rollup-plugin-uglify": "^6.0.3",
+      svelte: "^3.16.7",
+      "svelte-preprocess": "^3.2.6"
+  };
+  var dependencies = {
+      "github-markdown-css": "^3.0.1",
+      "highlight.js": "^9.17.1",
+      lodash: "^4.17.15",
+      marked: "^0.8.0",
+      "shortcut-key": "^1.0.0",
+      xss: "^1.0.6"
+  };
+  var files = ["dist/*","README.md"];
+  var pkg = {
+      "private": false,
+      name: name,
+      description: description,
+      main: main,
+      style: style,
+      version: version,
+      bugs: bugs,
+      repository: repository,
+      keywords: keywords,
+      author: author,
+      license: license,
+      scripts: scripts,
+      devDependencies: devDependencies,
+      dependencies: dependencies,
+      files: files
+  };
+
+
+  //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhY2thZ2UuanNvbihvcmlnaW5hbCkiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxHQUFBLENBQUksT0FBTztBQUNsQixPQUFPLEdBQUEsQ0FBSSxjQUFjO0FBQ3pCLE9BQU8sR0FBQSxDQUFJLE9BQU87QUFDbEIsT0FBTyxHQUFBLENBQUksUUFBUTtBQUNuQixPQUFPLEdBQUEsQ0FBSSxVQUFVO0FBQ3JCLE9BQU8sR0FBQSxDQUFJLE9BQU87SUFDakIsS0FBSzs7QUFFTixPQUFPLEdBQUEsQ0FBSSxhQUFhO0lBQ3ZCLE1BQU0sS0FEaUIsQ0FBQTtJQUV2QixLQUFLOztBQUVOLE9BQU8sR0FBQSxDQUFJLFdBQVcsQ0FDckIsU0FDQSxTQUNBLE1BQ0EsV0FDQSxTQUNBO0FBRUQsT0FBTyxHQUFBLENBQUksU0FBUztBQUNwQixPQUFPLEdBQUEsQ0FBSSxVQUFVO0FBQ3JCLE9BQU8sR0FBQSxDQUFJLFVBQVU7SUFDcEIsYUFBYSxvQkFETyxDQUFBO0lBRXBCLGVBQWUsY0FGSyxDQUFBO0lBR3BCLE9BQU8sMENBSGEsQ0FBQTtJQUlwQixLQUFLLG1DQUplLENBQUE7SUFLcEIsU0FBUzs7QUFFVixPQUFPLEdBQUEsQ0FBSSxrQkFBa0I7SUFDNUIsZUFBZSxRQURhLENBQUE7SUFFNUIsa0NBQWtDLFFBRk4sQ0FBQTtJQUc1QixtQ0FBbUMsUUFIUCxDQUFBO0lBSTVCLHFCQUFxQixRQUpPLENBQUE7SUFLNUIsK0JBQStCLFFBTEgsQ0FBQTtJQU01QixjQUFjLFFBTmMsQ0FBQTtJQU81QixNQUFNLFFBUHNCLENBQUE7SUFRNUIsU0FBUyxTQVJtQixDQUFBO0lBUzVCLEtBQUssUUFUdUIsQ0FBQTtJQVU1QixNQUFNLFFBVnNCLENBQUE7SUFXNUIscUJBQXFCLFFBWE8sQ0FBQTtJQVk1QixjQUFjLFFBWmMsQ0FBQTtJQWE1QixrQkFBa0IsUUFiVSxDQUFBO0lBYzVCLGVBQWUsUUFkYSxDQUFBO0lBZTVCLGdCQUFnQixRQWZZLENBQUE7SUFnQjVCLGVBQWUsUUFoQmEsQ0FBQTtJQWlCNUIsU0FBUyxTQWpCbUIsQ0FBQTtJQWtCNUIsTUFBTSxTQWxCc0IsQ0FBQTtJQW1CNUIsYUFBYSxTQW5CZSxDQUFBO0lBb0I1QixRQUFRLFNBcEJvQixDQUFBO0lBcUI1Qix1QkFBdUIsUUFyQkssQ0FBQTtJQXNCNUIsMEJBQTBCLFNBdEJFLENBQUE7SUF1QjVCLHNCQUFzQixRQXZCTSxDQUFBO0lBd0I1QiwwQkFBMEIsUUF4QkUsQ0FBQTtJQXlCNUIsMEJBQTBCLFFBekJFLENBQUE7SUEwQjVCLHNCQUFzQixRQTFCTSxDQUFBO0lBMkI1Qiw0QkFBNEIsUUEzQkEsQ0FBQTtJQTRCNUIsd0JBQXdCLFFBNUJJLENBQUE7SUE2QjVCLHVCQUF1QixRQTdCSyxDQUFBO0lBOEI1Qix3QkFBd0IsUUE5QkksQ0FBQTtJQStCNUIsd0JBQXdCLFFBL0JJLENBQUE7SUFnQzVCLHdCQUF3QixRQWhDSSxDQUFBO0lBaUM1QixRQUFRLFNBakNvQixDQUFBO0lBa0M1QixxQkFBcUI7O0FBRXRCLE9BQU8sR0FBQSxDQUFJLGVBQWU7SUFDekIsdUJBQXVCLFFBREUsQ0FBQTtJQUV6QixnQkFBZ0IsU0FGUyxDQUFBO0lBR3pCLFFBQVEsVUFIaUIsQ0FBQTtJQUl6QixRQUFRLFFBSmlCLENBQUE7SUFLekIsZ0JBQWdCLFFBTFMsQ0FBQTtJQU16QixLQUFLOztBQUVOLE9BQU8sR0FBQSxDQUFJLFFBQVEsQ0FDbEIsU0FDQTtBQUVELGVBQWU7SUFDZCxXQUFXLEtBREcsQ0FBQTtJQUVkLE1BQU0sSUFGUSxDQUFBO0lBR2QsYUFBYSxXQUhDLENBQUE7SUFJZCxNQUFNLElBSlEsQ0FBQTtJQUtkLE9BQU8sS0FMTyxDQUFBO0lBTWQsU0FBUyxPQU5LLENBQUE7SUFPZCxNQUFNLElBUFEsQ0FBQTtJQVFkLFlBQVksVUFSRSxDQUFBO0lBU2QsVUFBVSxRQVRJLENBQUE7SUFVZCxRQUFRLE1BVk0sQ0FBQTtJQVdkLFNBQVMsT0FYSyxDQUFBO0lBWWQsU0FBUyxPQVpLLENBQUE7SUFhZCxpQkFBaUIsZUFiSCxDQUFBO0lBY2QsY0FBYyxZQWRBLENBQUE7SUFlZCxPQUFPOztBQTVGUiIsImZpbGUiOiJwYWNrYWdlLmpzb24ob3JpZ2luYWwpIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHZhciBuYW1lID0gXCJAemhhbmdndWp1bi9lZGl0b3JcIjtcbmV4cG9ydCB2YXIgZGVzY3JpcHRpb24gPSBcIvqOc3ZlbHRlLG1hcmtlZCx4c3OEgFVtYXJrZG93bhaRaFwiO1xuZXhwb3J0IHZhciBtYWluID0gXCJkaXN0L2VkaXRvci5taW4uanNcIjtcbmV4cG9ydCB2YXIgc3R5bGUgPSBcImRpc3QvZWRpdG9yLm1pbi5jc3NcIjtcbmV4cG9ydCB2YXIgdmVyc2lvbiA9IFwiMS4wLjlcIjtcbmV4cG9ydCB2YXIgYnVncyA9IHtcblx0dXJsOiBcImh0dHBzOi8vZ2l0aHViLmNvbS96aGFuZ2d1anVuL2VkaXRvci9pc3N1ZXNcIlxufTtcbmV4cG9ydCB2YXIgcmVwb3NpdG9yeSA9IHtcblx0dHlwZTogXCJnaXRcIixcblx0dXJsOiBcImh0dHBzOi8vZ2l0aHViLmNvbS96aGFuZ2d1anVuL2VkaXRvclwiXG59O1xuZXhwb3J0IHZhciBrZXl3b3JkcyA9IFtcblx0XCJzdmVsdGVcIixcblx0XCJtYXJrZWRcIixcblx0XCJ4c3NcIixcblx0XCJtYXJrZG93blwiLFxuXHRcImVkaXRvclwiLFxuXHRcIkB6aGFuZ2d1anVuL2VkaXRvclwiXG5dO1xuZXhwb3J0IHZhciBhdXRob3IgPSBcInpoYW5nZ3VqdW5cIjtcbmV4cG9ydCB2YXIgbGljZW5zZSA9IFwiTUlUXCI7XG5leHBvcnQgdmFyIHNjcmlwdHMgPSB7XG5cdFwiY2xlYXI6ZGV2XCI6IFwicm0gLXJmIHB1YmxpYy9kaXN0XCIsXG5cdFwiY2xlYXI6YnVpbGRcIjogXCJybSAtcmYgYnVpbGRcIixcblx0YnVpbGQ6IFwibnBtIHJ1biBjbGVhcjpidWlsZCAmJiByb2xsdXAgLWMgJiYgZ3VscFwiLFxuXHRkZXY6IFwibnBtIHJ1biBjbGVhcjpkZXYgJiYgcm9sbHVwIC1jIC13XCIsXG5cdHB1Ymxpc2g6IFwibnBtIHB1Ymxpc2ggLS1hY2Nlc3M9cHVibGljXCJcbn07XG5leHBvcnQgdmFyIGRldkRlcGVuZGVuY2llcyA9IHtcblx0XCJAYmFiZWwvY29yZVwiOiBcIl43LjcuN1wiLFxuXHRcIkBiYWJlbC9wbHVnaW4tZXh0ZXJuYWwtaGVscGVyc1wiOiBcIl43LjcuNFwiLFxuXHRcIkBiYWJlbC9wbHVnaW4tdHJhbnNmb3JtLXJ1bnRpbWVcIjogXCJeNy43LjZcIixcblx0XCJAYmFiZWwvcHJlc2V0LWVudlwiOiBcIl43LjcuN1wiLFxuXHRcIkByb2xsdXAvcGx1Z2luLW5vZGUtcmVzb2x2ZVwiOiBcIl42LjAuMFwiLFxuXHRhdXRvcHJlZml4ZXI6IFwiXjkuNy4xXCIsXG5cdGNucG06IFwiXjYuMS4xXCIsXG5cdGNzc25hbm86IFwiXjQuMS4xMFwiLFxuXHRkZWw6IFwiXjUuMS4wXCIsXG5cdGd1bHA6IFwiXjQuMC4yXCIsXG5cdFwiZ3VscC1hdXRvcHJlZml4ZXJcIjogXCJeNy4wLjFcIixcblx0XCJndWxwLWJhYmVsXCI6IFwiXjguMC4wXCIsXG5cdFwiZ3VscC1jbGVhbi1jc3NcIjogXCJeNC4yLjBcIixcblx0XCJndWxwLWNvbmNhdFwiOiBcIl4yLjYuMVwiLFxuXHRcImd1bHAtY3NzbmFub1wiOiBcIl4yLjEuM1wiLFxuXHRcImd1bHAtcmVuYW1lXCI6IFwiXjIuMC4wXCIsXG5cdGluc3RhbGw6IFwiXjAuMTMuMFwiLFxuXHRqZXN0OiBcIl4yNC45LjBcIixcblx0XCJub2RlLXNhc3NcIjogXCJeNC4xMy4wXCIsXG5cdHJvbGx1cDogXCJeMS4xMi4wXCIsXG5cdFwicm9sbHVwLXBsdWdpbi1iYWJlbFwiOiBcIl40LjMuM1wiLFxuXHRcInJvbGx1cC1wbHVnaW4tY29tbW9uanNcIjogXCJeMTAuMC4wXCIsXG5cdFwicm9sbHVwLXBsdWdpbi1jb3B5XCI6IFwiXjMuMS4wXCIsXG5cdFwicm9sbHVwLXBsdWdpbi1jc3Mtb25seVwiOiBcIl4xLjAuMFwiLFxuXHRcInJvbGx1cC1wbHVnaW4tZmlsZXNpemVcIjogXCJeNi4yLjFcIixcblx0XCJyb2xsdXAtcGx1Z2luLWpzb25cIjogXCJeNC4wLjBcIixcblx0XCJyb2xsdXAtcGx1Z2luLWxpdmVyZWxvYWRcIjogXCJeMS4wLjBcIixcblx0XCJyb2xsdXAtcGx1Z2luLW5vZGVudFwiOiBcIl4wLjIuMlwiLFxuXHRcInJvbGx1cC1wbHVnaW4tc2VydmVcIjogXCJeMS4wLjFcIixcblx0XCJyb2xsdXAtcGx1Z2luLXN2ZWx0ZVwiOiBcIl41LjAuM1wiLFxuXHRcInJvbGx1cC1wbHVnaW4tdGVyc2VyXCI6IFwiXjUuMS4yXCIsXG5cdFwicm9sbHVwLXBsdWdpbi11Z2xpZnlcIjogXCJeNi4wLjNcIixcblx0c3ZlbHRlOiBcIl4zLjE2LjdcIixcblx0XCJzdmVsdGUtcHJlcHJvY2Vzc1wiOiBcIl4zLjIuNlwiXG59O1xuZXhwb3J0IHZhciBkZXBlbmRlbmNpZXMgPSB7XG5cdFwiZ2l0aHViLW1hcmtkb3duLWNzc1wiOiBcIl4zLjAuMVwiLFxuXHRcImhpZ2hsaWdodC5qc1wiOiBcIl45LjE3LjFcIixcblx0bG9kYXNoOiBcIl40LjE3LjE1XCIsXG5cdG1hcmtlZDogXCJeMC44LjBcIixcblx0XCJzaG9ydGN1dC1rZXlcIjogXCJeMS4wLjBcIixcblx0eHNzOiBcIl4xLjAuNlwiXG59O1xuZXhwb3J0IHZhciBmaWxlcyA9IFtcblx0XCJkaXN0LypcIixcblx0XCJSRUFETUUubWRcIlxuXTtcbmV4cG9ydCBkZWZhdWx0IHtcblx0XCJwcml2YXRlXCI6IGZhbHNlLFxuXHRuYW1lOiBuYW1lLFxuXHRkZXNjcmlwdGlvbjogZGVzY3JpcHRpb24sXG5cdG1haW46IG1haW4sXG5cdHN0eWxlOiBzdHlsZSxcblx0dmVyc2lvbjogdmVyc2lvbixcblx0YnVnczogYnVncyxcblx0cmVwb3NpdG9yeTogcmVwb3NpdG9yeSxcblx0a2V5d29yZHM6IGtleXdvcmRzLFxuXHRhdXRob3I6IGF1dGhvcixcblx0bGljZW5zZTogbGljZW5zZSxcblx0c2NyaXB0czogc2NyaXB0cyxcblx0ZGV2RGVwZW5kZW5jaWVzOiBkZXZEZXBlbmRlbmNpZXMsXG5cdGRlcGVuZGVuY2llczogZGVwZW5kZW5jaWVzLFxuXHRmaWxlczogZmlsZXNcbn07XG4iXX0=
+
   var ToolBar =
   /*#__PURE__*/
   function () {
@@ -11646,27 +11733,28 @@
       _classCallCheck(this, ToolBar);
 
       this.editor = editor;
-      this.toollist = cloneDeep_1(this.editor.toollist);
     }
 
     _createClass(ToolBar, [{
       key: "has",
       value: function has(name) {
-        if (!name) throw new Error('argument must be a string');
+        if (!name) return false;
         var item = this.get(name);
         return item ? true : false;
       }
     }, {
       key: "_add",
       value: function _add(item) {
-        var toollist = this.toollist;
+        var toollist = this.editor.toollist;
         var tools = [].concat(_toConsumableArray(toollist), [item]);
         return tools;
       }
     }, {
       key: "add",
       value: function add(item) {
-        if (!isPlainObject_1(item) || !item.icon || !item.name) throw new Error("add data must be an object and contain the icon, name attribute");
+        if (!isPlainObject_1(item) || !item.icon || !item.name) return false;
+        var has = this.has(item.name);
+        if (has) return false;
 
         var tools = this._add(item);
 
@@ -11675,7 +11763,7 @@
     }, {
       key: "_del",
       value: function _del(name) {
-        var toollist = this.toollist;
+        var toollist = this.editor.toollist;
         var findIndex = toollist.findIndex(function (item) {
           return item.name == name;
         });
@@ -11689,7 +11777,9 @@
     }, {
       key: "del",
       value: function del(name) {
-        if (!name) throw new Error('argument must be a string');
+        if (!name) return false;
+        var has = this.has(name);
+        if (!has) return false;
 
         var tools = this._del(name);
 
@@ -11698,19 +11788,19 @@
     }, {
       key: "_replace",
       value: function _replace(name, item) {
-        var toollist = this.toollist;
+        var toollist = this.editor.toollist;
         var findIndex = toollist.findIndex(function (val) {
           return val.name == name;
         });
-        if (findIndex == -1) return null;
+        if (findIndex == -1) return false;
         toollist.splice(findIndex, 1, item);
         return toollist;
       }
     }, {
       key: "replace",
       value: function replace(name, item) {
-        if (!isPlainObject_1(item) || !item.icon || !item.name) throw new Error("replace data must be an object and contain the icon, name attribute");
-        if (!name) throw new Error("argument 'name' must be a string");
+        if (!isPlainObject_1(item) || !item.icon || !item.name) return false;
+        if (!name) return false;
 
         var tools = this._replace(name, item);
 
@@ -11719,8 +11809,8 @@
     }, {
       key: "set",
       value: function set(item) {
-        if (!isPlainObject_1(item) || !item.icon || !item.name) throw new Error("replace data must be an object and contain the icon, name attribute");
-        var toollist = this.toollist;
+        if (!isPlainObject_1(item) || !item.icon || !item.name) return false;
+        var toollist = this.editor.toollist;
         var findIndex = toollist.findIndex(function (val) {
           return val.name == item.name;
         });
@@ -11736,8 +11826,8 @@
     }, {
       key: "get",
       value: function get(name) {
-        if (!name) throw new Error('argument must be a string');
-        var toollist = this.toollist;
+        if (!name) return false;
+        var toollist = this.editor.toollist;
         return toollist.find(function (val) {
           return val.name == name;
         });
@@ -11790,6 +11880,7 @@
       this.editor.on = this.editor.$on;
       this.editor.destroy = this.editor.$destroy;
       this.toolbar = new ToolBar(this.editor);
+      this.version = pkg.version;
     }
 
     _createClass(Editor$1, [{

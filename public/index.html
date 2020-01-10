@@ -17,22 +17,66 @@
 </head>
 <input type="button" value="after" id="btn" />
 <input type="button" value="before" id="btn1" />
-<input type="button" value="watch xss" id="btn2" />
+<input type="button" value="新增按钮" id="btn2" />
+<input type="button" value="删除按钮" id="btn3" />
+<input type="button" value="替换" id="btn4" />
+<input type="button" value="设置按钮" id="btn5" />
+<input type="button" value="aaa" id="btn3" />
+<input type="button" value="watch xss" id="btn4" />
 <div id="box"></div>
 <div id="box2"></div>
 <div id="box3"></div>
 <script src='./dist/editor.js?v=1'></script>
 <script>
+	const getEl = id => document.querySelector(`#${id}`)
 	const marked = MdEditor.MdMarked
 	const mditor = new MdEditor.MdCreate('#box',{
-	  height:200
+	  height:500,
+		value: '[svelte](https://www.npmjs.com/package/svelte)'
 	})
 	// setTimeout(() => {
 	// 	console.log('new placeholder')
 	// mditor.editor.placeholder = '这是发大哥'
 	console.log(mditor)
+	getEl('btn2').onclick = () => {
+		const item = {
+			name: "news",
+			title: "新增的按钮",
+			icon: "icon-cuti",
+			handler: () => {
+				alert("新增按钮的事件操作")
+			}
+		}
+		mditor.toolbar.add(item)
+	}
+	getEl('btn3').onclick = () => {
+		mditor.toolbar.del("redo")
+	}
+	getEl('btn4').onclick = () => {
+		const item = {
+			name: "replce",
+			title: "替换的按钮",
+			icon: "icon-code",
+			handler: () => {
+				alert("替换按钮的事件操作")
+			}
+		}
+		mditor.toolbar.replace('h2',item)
+	}
+	getEl('btn5').onclick = () => {
+		const item = {
+			name: "h5",
+			title: "设置的按钮",
+			icon: "icon-code",
+			handler: () => {
+				alert("设置按钮的事件操作")
+			},
+			key:'shift+alt+5'
+		}
+		mditor.toolbar.set(item)
+	}
 	// },3000)
-	// const aa = new MdEditor.MdCreate('#box2')
+	const aa = new MdEditor.MdCreate('#box2')
 	//
 	// const ccc = {
 	// 	icon:'icon-code',
@@ -87,7 +131,6 @@
 	// mditor.editor.splitscreen = false
 	// mditor.editor.preview = true
 
-	const getEl = id => document.querySelector(`#${id}`)
 	getEl('btn').onclick = function(){
 		console.log(mditor)
 	  mditor.insertAfterText('hello word')

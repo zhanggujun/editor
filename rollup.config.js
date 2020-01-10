@@ -12,6 +12,7 @@ import { uglify } from 'rollup-plugin-uglify'
 import filesize from 'rollup-plugin-filesize'
 import copy from 'rollup-plugin-copy'
 import nodent from 'rollup-plugin-nodent' // 转async/await
+import json from 'rollup-plugin-json'
 
 import css from 'rollup-plugin-css-only'
 
@@ -35,6 +36,7 @@ export default {
 		file: !production ? 'public/dist/editor.js' : 'dist/editor.min.js',
 	},
 	plugins: [
+		json(),
 		svelte({
 			dev: !production,
 			css: css => {

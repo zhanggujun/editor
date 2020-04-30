@@ -84,9 +84,6 @@
 .marked-body.markdown-body pre{
   font-family:play,SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
 }
-.marked-body.markdown-body code{
-  color:#d14;
-}
 .marked-body.markdown-body table{
   display:table;
   width:100%;
@@ -157,6 +154,18 @@
   margin-bottom: 16px;
   background: #24292e;
 }
+.marked-body iframe.bilibili{
+  width:100%!important;
+  height:450px!important;
+  border:1px solid #eee;
+}
+.marked-body iframe.net-ease{
+  width:100%!important;
+  height:86px!important;
+}
 .marked-body:last-child{
   margin-bottom:0!important;
+}
+.marked-body.markdown-body a:hover{
+  text-decoration: none;
 }

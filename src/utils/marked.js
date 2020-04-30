@@ -6,12 +6,6 @@ import isPlainObject from 'lodash/isPlainObject'
 const languages = ['cpp', 'xml', 'bash', 'coffeescript', 'css', 'markdown', 'http', 'java', 'javascript', 'json', 'less', 'makefile', 'nginx', 'php', 'python', 'scss', 'sql', 'stylus','js','https']
 const renderer = new marked.Renderer()
 
-const options = {
-  whiteList:{
-    iframe:['src','scrolling','border','frameborder','framespacing','allowfullscreen']
-  }
-}
-
 marked.setOptions({
   renderer,
   gfm: true,
@@ -141,7 +135,9 @@ const xssDefault = _ => {
         'height',
         'frameborder',
         'framespacing',
-        'allowfullscreen'
+        'allowfullscreen',
+        'style',
+        'class'
       ]
     }
   }

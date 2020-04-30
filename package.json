@@ -4,7 +4,7 @@
   "description": "基于svelte,marked,xss的简单markdown编辑器",
   "main": "dist/editor.min.js",
   "style": "dist/editor.min.css",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "bugs": {
     "url": "https://github.com/zhanggujun/editor/issues"
   },
